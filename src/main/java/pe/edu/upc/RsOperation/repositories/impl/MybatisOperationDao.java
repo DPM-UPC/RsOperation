@@ -24,11 +24,16 @@ public class MybatisOperationDao implements OperationDao {
         return operationMapper.getOperation(operation);
     }
     @Override
-    public List<Operation> listOperation(User user) throws Exception {
-        return operationMapper.listOperation(user);
+    public List<Operation> listOperation(Operation operation) throws Exception {
+        return operationMapper.listOperation(operation);
     }
     @Override
     public int deleteOperation(Operation operation) throws Exception {
         return operationMapper.deleteOperation(operation);
+    }
+
+    @Override
+    public int updateOperation(Operation operation) throws Exception {
+        return operationMapper.updateOperation(operation);
     }
 }

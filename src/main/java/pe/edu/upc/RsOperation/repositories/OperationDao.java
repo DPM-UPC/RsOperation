@@ -9,11 +9,11 @@ public interface OperationDao {
 
     int createOperation(Operation operation) throws Exception;
 
-    //int updateMovement(Operation movement) throws Exception;
+    int updateOperation(Operation operation) throws Exception;
 
     Operation getOperation(Operation operation) throws Exception;
 
-    List<Operation> listOperation(User user) throws Exception;
+    List<Operation> listOperation(Operation operation) throws Exception;
 
     int deleteOperation(Operation operation) throws Exception;
 }

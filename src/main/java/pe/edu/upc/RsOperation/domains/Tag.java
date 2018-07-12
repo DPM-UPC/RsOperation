@@ -1,30 +1,28 @@
 package pe.edu.upc.RsOperation.domains;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-public class Account {
-    private  Integer account_id;
+import java.util.Date;
+
+public class Tag {
+    private Integer tag_id;
     private String description;
-    private Integer main_account;
-    private Integer sign;
     private Integer state;
     private Date creation_date;
     private Date update_date;
+    private Integer category_id_fk;
 
-    public Account(Integer account_id) {
-        this.account_id = account_id;
+    public Tag() {
     }
 
-    public Account() {
+    public Tag(Integer tag_id) {
+        this.tag_id = tag_id;
     }
 
-    public Integer getAccount_id() {
-        return account_id;
+    public Integer getTag_id() {
+        return tag_id;
     }
 
-    public void setAccount_id(Integer account_id) {
-        this.account_id = account_id;
+    public void setTag_id(Integer tag_id) {
+        this.tag_id = tag_id;
     }
 
     public String getDescription() {
@@ -33,22 +31,6 @@ public class Account {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Integer getMain_account() {
-        return main_account;
-    }
-
-    public void setMain_account(Integer main_account) {
-        this.main_account = main_account;
-    }
-
-    public Integer getSign() {
-        return sign;
-    }
-
-    public void setSign(Integer sign) {
-        this.sign = sign;
     }
 
     public Integer getState() {
@@ -75,20 +57,22 @@ public class Account {
         this.update_date = update_date;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "Account{" +
-                "account_id=" + account_id +
-                ", description='" + description + '\'' +
-                ", main_account='" + main_account + '\'' +
-                ", sign='" + sign + '\'' +
-                ", state='" + state + '\'' +
-                ", creation_date='" + creation_date + '\'' +
-                ", update_date=" + update_date +
-                '}';
+    public Integer getCategory_id_fk() {
+        return category_id_fk;
     }
 
-
+    public void setCategory_id_fk(Integer category_id_fk) {
+        this.category_id_fk = category_id_fk;
+    }
+    @Override
+    public String toString() {
+        return "Category{" +
+                "tag_id=" + tag_id +
+                ", description='" + description + '\'' +
+                ", state='" + state + '\'' +
+                ", creation_date='" + creation_date + '\'' +
+                ", update_date='" + update_date + '\'' +
+                ", category_id_fk=" + category_id_fk +
+                '}';
+    }
 }
