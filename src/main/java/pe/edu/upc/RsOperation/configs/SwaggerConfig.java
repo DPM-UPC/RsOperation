@@ -28,7 +28,7 @@ public class SwaggerConfig {
         List<Parameter> aParameters = new ArrayList<Parameter>();
         aParameters.add(aParameterBuilder.build());
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
-                .select().apis(RequestHandlerSelectors.basePackage("pe.edu.upc.RsAuth.controllers"))
+                .select().apis(RequestHandlerSelectors.basePackage("pe.edu.upc.RsOperation.controllers"))
                 .paths(PathSelectors.any())
                 .build().globalOperationParameters(aParameters);
     }

@@ -1,5 +1,5 @@
 mybatis:
-  type-aliases-package: pe.edu.upc.RsAuth.mappers
+  type-aliases-package: pe.edu.upc.RsOperation.mappers
 
 datasource:
   driver-class-name: com.mysql.jdbc.Driver

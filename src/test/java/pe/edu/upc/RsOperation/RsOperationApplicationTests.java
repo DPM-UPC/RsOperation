@@ -1,25 +1,29 @@
-package pe.edu.upc.RsAuth;
+package pe.edu.upc.RsOperation;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import pe.edu.upc.RsOperation.RsOperationApplication;
 import pe.edu.upc.RsOperation.models.Operation;
 import pe.edu.upc.RsOperation.services.OperationService;
 
 import java.math.BigDecimal;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = RsOperationApplication.class)
+@SpringBootTest
 public class RsOperationApplicationTests {
 
     private static final Logger LOGGER = LogManager.getLogger(RsOperationApplicationTests.class);
 
     @Autowired
     OperationService operationService;
+
+    @Test
+    public void contextLoads() {
+    }
 
     //@Test
     public void createOperation() throws Exception {
