@@ -10,20 +10,20 @@ import java.util.List;
 @Mapper
 @Component
 public interface OperationMapper {
-    @Insert("insert into operations (operation_date,concept,amount," +
+    @Insert("insert into operations (operation_date,amount," +
             "state,creation_date,user_business_id_fk,account_id_fk,category_id_fk,tag_id_fk) " +
-            "values(now(),#{concept},#{amount},1,now(),#{userBusinessIdFk},#{accountIdFk}" +
+            "values(now(),#{amount},1,now(),#{userBusinessIdFk},#{accountIdFk}" +
             ",#{categoryIdFk},#{tagIdFk}"
             + ")")
     @Options(useGeneratedKeys = true, keyProperty = "operationId", keyColumn = "operation_id")
     int createOperation(Operation operation);
 
-    @Select("<script>  SELECT m.operation_id as operationId,m.operation_date as operation_date,m.concept,m.amount,m.state,m.creation_date as creationDate,m.update_date as updateDate," +
+    @Select("<script>  SELECT m.operation_id as operationId,m.operation_date as operation_date,m.amount,m.state,m.creation_date as creationDate,m.update_date as updateDate," +
             " m.user_business_id_fk as userBusinessIdFk, m.account_id_fk as accountIdFk,m.category_id_fk as categoryIdFk,m.tag_id_fk as tagIdFk FROM operations m where m.state=1  " +
             " <if test=\"operationId != null\">and operation_id=#{operationId}</if> </script>")
     Operation getOperation(Operation operation);
 
-    @Select("<script> SELECT m.operation_id as operationId,m.operation_date as operation_date,m.concept,m.amount,m.state,m.creation_date as creationDate,m.update_date as updateDate, " +
+    @Select("<script> SELECT m.operation_id as operationId,m.operation_date as operation_date,m.amount,m.state,m.creation_date as creationDate,m.update_date as updateDate, " +
             "m.user_business_id_fk as userBusinessIdFk, m.account_id_fk as accountIdFk,m.category_id_fk as categoryIdFk,m.tag_id_fk as tagIdFk FROM operations m where m.state=1 " +
             "<if test=\"operation.userBusinessIdFk != null\"> and user_business_id_fk=#{operation.userBusinessIdFk}</if> " +
             "<if test=\"operation.accountIdFk != null\"> and account_id_fk=#{operation.accountIdFk}</if> " +
@@ -35,7 +35,6 @@ public interface OperationMapper {
     int deleteOperation(Operation operation);
 
     @Update("<script> update operations <set> update_date=now() " +
-            "<if test=\"concept != null\">,concept=#{concept}</if>" +
             "<if test=\"amount != null\">,amount=#{amount}</if>"+
             "<if test=\"state != null\">,state=#{state}</if>"+
             "<if test=\"userBusinessIdFk != null\">,user_business_id_fk=#{userBusinessIdFk}</if>" +

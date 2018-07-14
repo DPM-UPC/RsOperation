@@ -2,7 +2,6 @@ package pe.edu.upc.RsAuth;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,7 +21,7 @@ public class RsOperationApplicationTests {
     @Autowired
     OperationService operationService;
 
-    @Test
+    //@Test
     public void createOperation() throws Exception {
         Operation operation = new Operation();
         operation.setAmount(new BigDecimal(2.33));
