@@ -7,9 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pe.edu.upc.RsOperation.domains.Account;
-import pe.edu.upc.RsOperation.domains.Category;
-import pe.edu.upc.RsOperation.services.AccountService;
+import pe.edu.upc.RsOperation.models.Account;
+import pe.edu.upc.RsOperation.models.Category;
 import pe.edu.upc.RsOperation.services.CategoryService;
 
 import java.util.List;

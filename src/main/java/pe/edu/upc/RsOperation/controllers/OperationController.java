@@ -3,20 +3,14 @@ package pe.edu.upc.RsOperation.controllers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.RsOperation.domains.Operation;
-import pe.edu.upc.RsOperation.domains.User;
-import pe.edu.upc.RsOperation.domains.Users_Business;
+import pe.edu.upc.RsOperation.models.Operation;
 import pe.edu.upc.RsOperation.services.OperationService;
-
 
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
-import static org.springframework.http.HttpStatus.NO_CONTENT;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping(value = "/operations")
@@ -25,7 +19,6 @@ public class OperationController {
 
     @Autowired
     OperationService operationService;
-    private Integer user_business_id;
 
     @PostMapping
     public ResponseEntity<Operation> createOperation(@RequestBody Operation operation) {
@@ -40,15 +33,13 @@ public class OperationController {
         return ResponseEntity.status(CREATED).body(operationResult);
     }
 
-
-
     @DeleteMapping("/{operation_id:^[0-9]*$}")
-    public ResponseEntity deleteOperation(@PathVariable("operation_id") Integer operation_id) {
+    public ResponseEntity deleteOperation(@PathVariable("operation_id") Integer operationId) {
 
-            LOGGER.info("deleteOperation(), operation_Id: " + operation_id);
+        LOGGER.info("deleteOperation(), operationId: " + operationId);
 
         try {
-          operationService.deleteOperation(new Operation(operation_id));
+            operationService.deleteOperation(new Operation(operationId));
         } catch (Exception e) {
             LOGGER.error("", e);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(null);
@@ -56,18 +47,17 @@ public class OperationController {
         return ResponseEntity.status(NO_CONTENT).build();
     }
 
-    /*public ResponseEntity<List<Operation>> getOperationFrom(@PathVariable(value = "user_id", required = false) Integer userId)*/
-
-
     @GetMapping()
-    public ResponseEntity<List<Operation>> getOperationFrom(@RequestParam(value = "user_business_id") Integer user_business_id)
+    public ResponseEntity<List<Operation>> listOperationFrom(@RequestParam(value = "user_business_id") Integer userBusinessId, @RequestParam(value = "account_id", required = false) Integer accountId
+            , @RequestParam(value = "period", required = false) Integer period)
     {
-        LOGGER.info("getOperationFrom(), user_business_id: {}: ", user_business_id);
+        LOGGER.info("listOperationFrom(), userBusinessId: {}: , accountId: {}, period: {}", userBusinessId, accountId, period);
         List<Operation> operationResult;
         Operation operationReq = new Operation();
-        operationReq.setUser_business_id_fk(user_business_id);
+        operationReq.setUserBusinessIdFk(userBusinessId);
+        operationReq.setAccountIdFk(accountId);
         try {
-            operationResult = operationService.listOperation(operationReq);
+            operationResult = operationService.listOperation(operationReq, period);
 
             LOGGER.info("operationResult: " + operationResult);
         } catch (Exception e) {

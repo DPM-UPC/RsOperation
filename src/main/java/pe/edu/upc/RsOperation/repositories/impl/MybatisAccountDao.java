@@ -2,10 +2,8 @@ package pe.edu.upc.RsOperation.repositories.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import pe.edu.upc.RsOperation.domains.Account;
-import pe.edu.upc.RsOperation.domains.Users_Business;
 import pe.edu.upc.RsOperation.mappers.AccountMapper;
-import pe.edu.upc.RsOperation.mappers.Users_BusinessMapper;
+import pe.edu.upc.RsOperation.models.Account;
 import pe.edu.upc.RsOperation.repositories.AccountDao;
 
 import java.util.List;

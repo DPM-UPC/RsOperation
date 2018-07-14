@@ -2,9 +2,8 @@ package pe.edu.upc.RsOperation.repositories.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import pe.edu.upc.RsOperation.domains.Account;
-import pe.edu.upc.RsOperation.domains.Category;
 import pe.edu.upc.RsOperation.mappers.CategoryMapper;
+import pe.edu.upc.RsOperation.models.Category;
 import pe.edu.upc.RsOperation.repositories.CategoryDao;
 
 import java.util.List;

@@ -4,9 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.RsOperation.domains.Account;
-import pe.edu.upc.RsOperation.domains.Category;
-import pe.edu.upc.RsOperation.repositories.AccountDao;
+import pe.edu.upc.RsOperation.models.Category;
 import pe.edu.upc.RsOperation.repositories.CategoryDao;
 
 import java.util.List;
@@ -23,7 +21,7 @@ public class CategoryService {
     }
 
     public Category getCategory(Category category) throws Exception {
-        LOGGER.debug("getCategory, getCategory: {}",category);
+        LOGGER.debug("getTag, getTag: {}", category);
         return categoryDao.getCategory(category);
     }
 }

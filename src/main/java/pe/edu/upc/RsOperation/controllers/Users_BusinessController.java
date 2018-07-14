@@ -3,16 +3,12 @@ package pe.edu.upc.RsOperation.controllers;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import pe.edu.upc.RsOperation.domains.Operation;
-import pe.edu.upc.RsOperation.domains.User;
-import pe.edu.upc.RsOperation.domains.Users_Business;
-import pe.edu.upc.RsOperation.services.OperationService;
+import pe.edu.upc.RsOperation.models.Operation;
+import pe.edu.upc.RsOperation.models.UsersBusiness;
 import pe.edu.upc.RsOperation.services.Users_BusinessService;
 
 import java.util.List;
@@ -25,13 +21,13 @@ public class Users_BusinessController {
     @Autowired
     Users_BusinessService user_businessService;
     @GetMapping()
-    /*public ResponseEntity<List<Operation>> getOperationFrom(@PathVariable(value = "user_id", required = false) Integer userId)*/
-    public ResponseEntity<List<Users_Business>> getUsers_BusinessFrom()
+    /*public ResponseEntity<List<Operation>> listOperationFrom(@PathVariable(value = "user_id", required = false) Integer userId)*/
+    public ResponseEntity<List<UsersBusiness>> getUsers_BusinessFrom()
     {
-        LOGGER.info("getOperationFrom(), user_Id: {}: ", "");
+        LOGGER.info("listOperationFrom(), user_Id: {}: ", "");
 
 
-        List<Users_Business> user_businessResult;
+        List<UsersBusiness> user_businessResult;
         //User userReq = new User();
         //userReq.setUserId(user_id);
         try {

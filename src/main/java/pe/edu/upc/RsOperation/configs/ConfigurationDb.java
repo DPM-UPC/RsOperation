@@ -17,7 +17,7 @@ public class ConfigurationDb {
 
     @Bean
     @ConfigurationProperties(prefix = "datasource")
-    public DataSource authDataSource() {
+    public DataSource operationDataSource() {
         return DataSourceBuilder.create().build();
     }
 }

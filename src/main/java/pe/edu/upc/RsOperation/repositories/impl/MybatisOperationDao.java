@@ -2,9 +2,8 @@ package pe.edu.upc.RsOperation.repositories.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import pe.edu.upc.RsOperation.domains.Operation;
-import pe.edu.upc.RsOperation.domains.User;
 import pe.edu.upc.RsOperation.mappers.OperationMapper;
+import pe.edu.upc.RsOperation.models.Operation;
 import pe.edu.upc.RsOperation.repositories.OperationDao;
 
 import java.util.List;
@@ -24,8 +23,8 @@ public class MybatisOperationDao implements OperationDao {
         return operationMapper.getOperation(operation);
     }
     @Override
-    public List<Operation> listOperation(Operation operation) throws Exception {
-        return operationMapper.listOperation(operation);
+    public List<Operation> listOperation(Operation operation, Integer period) throws Exception {
+        return operationMapper.listOperation(operation, period);
     }
     @Override
     public int deleteOperation(Operation operation) throws Exception {

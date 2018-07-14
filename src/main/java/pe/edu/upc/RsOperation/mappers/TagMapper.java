@@ -3,8 +3,7 @@ package pe.edu.upc.RsOperation.mappers;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
-import pe.edu.upc.RsOperation.domains.Category;
-import pe.edu.upc.RsOperation.domains.Tag;
+import pe.edu.upc.RsOperation.models.Tag;
 
 import java.util.List;
 
@@ -12,13 +11,14 @@ import java.util.List;
 @Component
 public interface TagMapper {
 
-    @Select("<script> SELECT t.tag_id,t.description,t.state,t.creation_date,t.update_date,t.category_id_fk FROM tags t where t.state=1 </script>"
+    @Select("<script> SELECT t.tag_id as tagId,t.description,t.state,t.creation_date as creationDate,t.update_date updateDate,t.category_id_fk as categoryIdFk FROM tags t where t.state=1 </script>"
     )
     List<Tag> listTag();
-    @Select("<script> SELECT t.tag_id,t.description,t.state,t.creation_date,t.update_date,t.category_id_fk FROM tags t "  +
+
+    @Select("<script> SELECT t.tag_id as tagId,t.description,t.state,t.creation_date as creationDate,t.update_date updateDate,t.category_id_fk as categoryIdFk FROM tags t " +
             "where t.state=1 "
             +
-            " <if test=\"tag_id != null\">and tag_id=#{tag_id}</if> </script>"
+            " <if test=\"tagId != null\">and tag_id=#{tagId}</if> </script>"
     )
     Tag getTag(Tag tag);
 

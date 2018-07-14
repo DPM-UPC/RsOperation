@@ -4,8 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.RsOperation.domains.Category;
-import pe.edu.upc.RsOperation.domains.Tag;
+import pe.edu.upc.RsOperation.models.Tag;
 import pe.edu.upc.RsOperation.repositories.TagDao;
 
 import java.util.List;

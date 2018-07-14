@@ -2,8 +2,7 @@ package pe.edu.upc.RsOperation.mappers;
 
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
-import pe.edu.upc.RsOperation.domains.Operation;
-import pe.edu.upc.RsOperation.domains.User;
+import pe.edu.upc.RsOperation.models.Operation;
 
 import java.util.List;
 
@@ -13,36 +12,37 @@ import java.util.List;
 public interface OperationMapper {
     @Insert("insert into operations (operation_date,concept,amount," +
             "state,creation_date,user_business_id_fk,account_id_fk,category_id_fk,tag_id_fk) " +
-            "values(now(),#{concept},#{amount},1,now(),#{user_business_id_fk},#{account_id_fk}" +
-            ",#{category_id_fk},#{tag_id_fk}"
+            "values(now(),#{concept},#{amount},1,now(),#{userBusinessIdFk},#{accountIdFk}" +
+            ",#{categoryIdFk},#{tagIdFk}"
             + ")")
-    @Options(useGeneratedKeys = true, keyProperty = "operation_id", keyColumn = "operation_id")
+    @Options(useGeneratedKeys = true, keyProperty = "operationId", keyColumn = "operation_id")
     int createOperation(Operation operation);
 
-    @Select("<script>  SELECT m.operation_id,m.operation_date,m.concept,m.amount,m.state,m.creation_date,m.update_date,m.user_business_id_fk, " +
-            " m.account_id_fk,m.category_id_fk,m.tag_id_fk FROM operations m where m.state=1  " +
-            " <if test=\"operation_id != null\">and operation_id=#{operation_id}</if> </script>")
+    @Select("<script>  SELECT m.operation_id as operationId,m.operation_date as operation_date,m.concept,m.amount,m.state,m.creation_date as creationDate,m.update_date as updateDate," +
+            " m.user_business_id_fk as userBusinessIdFk, m.account_id_fk as accountIdFk,m.category_id_fk as categoryIdFk,m.tag_id_fk as tagIdFk FROM operations m where m.state=1  " +
+            " <if test=\"operationId != null\">and operation_id=#{operationId}</if> </script>")
     Operation getOperation(Operation operation);
 
-    @Select("<script> SELECT m.operation_id,m.operation_date,m.concept,m.amount,m.state,m.creation_date,m.update_date,m.user_business_id_fk, " +
-            "m.account_id_fk,m.category_id_fk,m.tag_id_fk FROM operations m where m.state=1 " +
-            "<if test=\"user_business_id_fk != null\"> and user_business_id_fk=#{user_business_id_fk}</if> </script>"
+    @Select("<script> SELECT m.operation_id as operationId,m.operation_date as operation_date,m.concept,m.amount,m.state,m.creation_date as creationDate,m.update_date as updateDate, " +
+            "m.user_business_id_fk as userBusinessIdFk, m.account_id_fk as accountIdFk,m.category_id_fk as categoryIdFk,m.tag_id_fk as tagIdFk FROM operations m where m.state=1 " +
+            "<if test=\"operation.userBusinessIdFk != null\"> and user_business_id_fk=#{operation.userBusinessIdFk}</if> " +
+            "<if test=\"operation.accountIdFk != null\"> and account_id_fk=#{operation.accountIdFk}</if> " +
+            "<if test=\"period != null\"> and MONTH(creation_date)=#{period}</if> </script>"
     )
-    List<Operation> listOperation(Operation operation);
+    List<Operation> listOperation(@Param("operation") Operation operation, @Param("period") Integer period);
 
-    @Update("update operations set state=0 WHERE operation_id=#{operation_id}")
+    @Update("update operations set state=0 WHERE operation_id=#{operationId}")
     int deleteOperation(Operation operation);
-
 
     @Update("<script> update operations <set> update_date=now() " +
             "<if test=\"concept != null\">,concept=#{concept}</if>" +
             "<if test=\"amount != null\">,amount=#{amount}</if>"+
             "<if test=\"state != null\">,state=#{state}</if>"+
-            "<if test=\"user_business_id_fk != null\">,user_business_id_fk=#{user_business_id_fk}</if>"+
-            "<if test=\"account_id_fk != null\">,account_id_fk=#{account_id_fk}</if>"+
-            "<if test=\"category_id_fk != null\">,category_id_fk=#{category_id_fk}</if>"+
-            "<if test=\"tag_id_fk != null\">,tag_id_fk=#{tag_id_fk}</if>"+
-            " </set> WHERE operation_id=#{operation_id}</script>")
+            "<if test=\"userBusinessIdFk != null\">,user_business_id_fk=#{userBusinessIdFk}</if>" +
+            "<if test=\"accountIdFk != null\">,account_id_fk=#{accountIdFk}</if>" +
+            "<if test=\"categoryIdFk != null\">,category_id_fk=#{categoryIdFk}</if>" +
+            "<if test=\"tagIdFk != null\">,tag_id_fk=#{tagIdFk}</if>" +
+            " </set> WHERE operation_id=#{operationId}</script>")
     int updateOperation(Operation operation);
 
 

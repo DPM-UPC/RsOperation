@@ -1,7 +1,6 @@
 package pe.edu.upc.RsOperation.repositories;
 
-import pe.edu.upc.RsOperation.domains.Operation;
-import pe.edu.upc.RsOperation.domains.User;
+import pe.edu.upc.RsOperation.models.Operation;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ public interface OperationDao {
 
     Operation getOperation(Operation operation) throws Exception;
 
-    List<Operation> listOperation(Operation operation) throws Exception;
+    List<Operation> listOperation(Operation operation, Integer period) throws Exception;
 
     int deleteOperation(Operation operation) throws Exception;
 }

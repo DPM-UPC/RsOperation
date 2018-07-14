@@ -1,7 +1,6 @@
 package pe.edu.upc.RsOperation.repositories;
 
-import pe.edu.upc.RsOperation.domains.Account;
-import pe.edu.upc.RsOperation.domains.Users_Business;
+import pe.edu.upc.RsOperation.models.Account;
 
 import java.util.List;
 

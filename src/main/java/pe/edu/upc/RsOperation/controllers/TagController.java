@@ -7,9 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pe.edu.upc.RsOperation.domains.Account;
-import pe.edu.upc.RsOperation.domains.Category;
-import pe.edu.upc.RsOperation.domains.Tag;
+import pe.edu.upc.RsOperation.models.Tag;
 import pe.edu.upc.RsOperation.services.TagService;
 
 import java.util.List;

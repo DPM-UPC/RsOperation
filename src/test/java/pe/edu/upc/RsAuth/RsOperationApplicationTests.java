@@ -7,30 +7,30 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import pe.edu.upc.RsOperation.domains.User;
-import pe.edu.upc.RsOperation.services.AccessTokenService;
+import pe.edu.upc.RsOperation.RsOperationApplication;
+import pe.edu.upc.RsOperation.models.Operation;
+import pe.edu.upc.RsOperation.services.OperationService;
+
+import java.math.BigDecimal;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(classes = RsOperationApplication.class)
 public class RsOperationApplicationTests {
 
     private static final Logger LOGGER = LogManager.getLogger(RsOperationApplicationTests.class);
 
     @Autowired
-    AccessTokenService accessTokenService;
+    OperationService operationService;
 
     @Test
-    public void contextLoads() {
-    }
-
-    @Test
-    public void accessTokenTest() throws Exception {
-
-        User user = new User();
-        user.setUserName("paolo29");
-        user.setUserPassword("admin");
-
-        LOGGER.info(accessTokenService.getAuthToken(user));
+    public void createOperation() throws Exception {
+        Operation operation = new Operation();
+        operation.setAmount(new BigDecimal(2.33));
+        operation.setUserBusinessIdFk(1);
+        operation.setAccountIdFk(1);
+        operation.setCategoryIdFk(1);
+        operation.setTagIdFk(1);
+        operationService.createOperation(operation);
     }
 
 }

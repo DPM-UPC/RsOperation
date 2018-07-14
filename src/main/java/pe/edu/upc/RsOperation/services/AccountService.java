@@ -4,10 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.RsOperation.domains.Account;
-import pe.edu.upc.RsOperation.domains.Users_Business;
+import pe.edu.upc.RsOperation.models.Account;
 import pe.edu.upc.RsOperation.repositories.AccountDao;
-import pe.edu.upc.RsOperation.repositories.Users_BusinessDao;
 
 import java.util.List;
 
