@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.RsOperation.exception.ResourceException;
 import pe.edu.upc.RsOperation.models.Operation;
 import pe.edu.upc.RsOperation.services.OperationService;
 
@@ -26,6 +27,9 @@ public class OperationController {
         Operation operationResult;
         try {
             operationResult = operationService.createOperation(operation);
+        } catch (ResourceException e) {
+            LOGGER.error("error recurso detectado: ", e);
+            return ResponseEntity.status(e.getHttpStatus()).body(null);
         } catch (Exception e) {
             LOGGER.error("", e);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(null);
@@ -40,6 +44,9 @@ public class OperationController {
 
         try {
             operationService.deleteOperation(new Operation(operationId));
+        } catch (ResourceException e) {
+            LOGGER.error("error recurso detectado: ", e);
+            return ResponseEntity.status(e.getHttpStatus()).body(null);
         } catch (Exception e) {
             LOGGER.error("", e);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(null);
@@ -49,8 +56,7 @@ public class OperationController {
 
     @GetMapping()
     public ResponseEntity<List<Operation>> listOperationFrom(@RequestParam(value = "user_business_id") Integer userBusinessId, @RequestParam(value = "account_id", required = false) Integer accountId
-            , @RequestParam(value = "period", required = false) Integer period)
-    {
+            , @RequestParam(value = "period", required = false) Integer period) {
         LOGGER.info("listOperationFrom(), userBusinessId: {}: , accountId: {}, period: {}", userBusinessId, accountId, period);
         List<Operation> operationResult;
         Operation operationReq = new Operation();
@@ -60,6 +66,9 @@ public class OperationController {
             operationResult = operationService.listOperation(operationReq, period);
 
             LOGGER.info("operationResult: " + operationResult);
+        } catch (ResourceException e) {
+            LOGGER.error("error recurso detectado: ", e);
+            return ResponseEntity.status(e.getHttpStatus()).body(null);
         } catch (Exception e) {
             LOGGER.error("", e);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(null);
@@ -74,6 +83,9 @@ public class OperationController {
         Operation operationResult;
         try {
             operationResult = operationService.updateOperation(operation);
+        } catch (ResourceException e) {
+            LOGGER.error("error recurso detectado: ", e);
+            return ResponseEntity.status(e.getHttpStatus()).body(null);
         } catch (Exception e) {
             LOGGER.error("", e);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(null);

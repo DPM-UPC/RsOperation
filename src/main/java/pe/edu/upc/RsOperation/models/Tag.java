@@ -1,5 +1,6 @@
 package pe.edu.upc.RsOperation.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
@@ -10,8 +11,10 @@ public class Tag {
     private String description;
     private Integer state;
     @JsonProperty(value = "creation_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "America/Bogota")
     private Date creationDate;
     @JsonProperty(value = "update_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "America/Bogota")
     private Date updateDate;
     @JsonProperty(value = "category_id_fk")
     private Integer categoryIdFk;

@@ -40,6 +40,7 @@ public class OperationService {
         LOGGER.debug("movement_Id obtenido: " + operation.getOperationId());
         return getOperation(new Operation(operation.getOperationId()));
     }
+
     public void deleteOperation(Operation operation) throws Exception {
         LOGGER.debug("deleteOperation, operation: {}", operation);
         if (!validateDeleteRequest(operation))
@@ -68,7 +69,7 @@ public class OperationService {
         LOGGER.debug("listOperation, operation: {}", operation.getUserBusinessIdFk());
         List<Operation> listOperation = operationDao.listOperation(operation, period);
 
-        for (Operation rowoperation:listOperation) {
+        for (Operation rowoperation : listOperation) {
 
             Account account = accountDao.getAccount(new Account(rowoperation.getAccountIdFk()));
             rowoperation.setAccount(account);
@@ -87,6 +88,7 @@ public class OperationService {
         return listOperation;
 
     }
+
     public Operation updateOperation(Operation operation) throws Exception {
         LOGGER.debug("updateOperation, operation: {}", operation);
         if (!validateUpdateRequest(operation))
@@ -98,23 +100,26 @@ public class OperationService {
     public static boolean validateCreateRequest(Operation operation) {
         boolean result = false;
         if (operation != null)
-            if (operation.getAmount() != null)
+            if (operation.getOperationDate() != null)
+                if (operation.getAmount() != null)
                     result = true;
 
         return result;
 
 
     }
+
     public static boolean validateUpdateRequest(Operation operation) {
         boolean result = false;
         if (operation != null)
             if (operation.getOperationId() != null)
-                    result = true;
+                result = true;
 
         return result;
 
 
     }
+
     public static boolean validateDeleteRequest(Operation operation) {
         boolean result = false;
         if (operation != null)

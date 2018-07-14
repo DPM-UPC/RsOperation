@@ -1,5 +1,6 @@
 package pe.edu.upc.RsOperation.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
@@ -9,12 +10,15 @@ public class Operation {
     @JsonProperty(value = "operationId")
     private Integer operationId;
     @JsonProperty(value = "operation_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "America/Bogota")
     private Date operationDate;
     private BigDecimal amount;
     private Integer state;
     @JsonProperty(value = "creation_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "America/Bogota")
     private Date creationDate;
     @JsonProperty(value = "update_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "America/Bogota")
     private Date updateDate;
     @JsonProperty(value = "user_business_id_fk")
     private Integer userBusinessIdFk;

@@ -1,5 +1,6 @@
 package pe.edu.upc.RsOperation.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
@@ -13,8 +14,10 @@ public class Account {
     private Integer sign;
     private Integer state;
     @JsonProperty(value = "creation_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "America/Bogota")
     private Date creationDate;
     @JsonProperty(value = "update_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "America/Bogota")
     private Date updateDate;
 
     public Account(Integer accountId) {
