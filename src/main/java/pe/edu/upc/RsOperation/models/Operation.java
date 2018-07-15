@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Operation {
@@ -11,7 +12,7 @@ public class Operation {
     private Integer operationId;
     @JsonProperty(value = "operation_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "America/Bogota")
-    private Date operationDate;
+    private LocalDate operationDate;
     private BigDecimal amount;
     private Integer state;
     @JsonProperty(value = "creation_date")
@@ -71,11 +72,11 @@ public class Operation {
         this.operationId = operationId;
     }
 
-    public Date getOperationDate() {
+    public LocalDate getOperationDate() {
         return operationDate;
     }
 
-    public void setOperationDate(Date operationDate) {
+    public void setOperationDate(LocalDate operationDate) {
         this.operationDate = operationDate;
     }
 
