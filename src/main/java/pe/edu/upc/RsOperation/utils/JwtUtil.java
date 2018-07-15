@@ -5,9 +5,13 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 import pe.edu.upc.RsOperation.models.AccessToken;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Collections;
 import java.util.Date;
 
 /**
@@ -42,22 +46,27 @@ public class JwtUtil {
         return new AccessToken(token, expirationDate, userId);
     }
 
-    /*public static Authentication getAuthentication(HttpServletRequest request) {
+    public static Authentication getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(HEADER_STRING);
+        String user = null;
         if (token != null) {
             // parse the token.
-            String user = Jwts.parser()
-                    .setSigningKey(SECRET.getBytes())
-                    .parseClaimsJws(token.replace(TOKEN_PREFIX, "")) //este metodo es el que valida
-                    .getBody()
-                    .getSubject();
+            try {
+                user = Jwts.parser()
+                        .setSigningKey(SECRET.getBytes())
+                        .parseClaimsJws(token.replace(TOKEN_PREFIX, "")) //este metodo es el que valida
+                        .getBody()
+                        .getSubject();
+            } catch (Exception e) {
+                LOGGER.error("", e);
+            }
 
             return user != null ?
                     new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList()) :
                     null;
         }
         return null;
-    }*/
+    }
 
     @Value("${auth-security.token.secretCode}")
     public void setSECRET(String secret) {

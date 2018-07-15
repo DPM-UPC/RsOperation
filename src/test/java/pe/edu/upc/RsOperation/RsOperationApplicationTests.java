@@ -36,4 +36,14 @@ public class RsOperationApplicationTests {
         operationService.createOperation(operation);
     }
 
+    @Test
+    public void dateTest() {
+        /*Calendar calendar = Calendar.getInstance();
+        Integer month=calendar.get(Calendar.MONTH);
+
+        LOGGER.info(month<10?"0"+month:month);*/
+
+        LOGGER.info(new BigDecimal("0").setScale(2, BigDecimal.ROUND_HALF_EVEN));
+    }
+
 }

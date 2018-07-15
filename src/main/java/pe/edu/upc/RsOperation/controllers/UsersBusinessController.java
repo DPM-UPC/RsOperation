@@ -15,29 +15,29 @@ import java.util.List;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 @RestController
-@RequestMapping(value = "/users_business")
+@RequestMapping(value = "/usersBusiness")
 public class UsersBusinessController {
     private static final Logger LOGGER = LogManager.getLogger(Operation.class);
     @Autowired
-    Users_BusinessService user_businessService;
+    Users_BusinessService userBusinessService;
     @GetMapping()
     /*public ResponseEntity<List<Operation>> listOperationFrom(@PathVariable(value = "user_id", required = false) Integer userId)*/
-    public ResponseEntity<List<UsersBusiness>> getUsers_BusinessFrom()
+    public ResponseEntity<List<UsersBusiness>> getUsersBusinessFrom()
     {
         LOGGER.info("listOperationFrom(), user_Id: {}: ", "");
 
 
-        List<UsersBusiness> user_businessResult;
+        List<UsersBusiness> userBusinessResult;
         //User userReq = new User();
         //userReq.setUserId(user_id);
         try {
-            user_businessResult = user_businessService.listUsers_Business();
-            LOGGER.info("user_businessResult: " + user_businessResult);
+            userBusinessResult = userBusinessService.listUsers_Business();
+            LOGGER.info("user_businessResult: " + userBusinessResult);
         } catch (Exception e) {
             LOGGER.error("", e);
             return ResponseEntity.status(INTERNAL_SERVER_ERROR).body(null);
         }
-        if (user_businessResult == null) return ResponseEntity.noContent().build();
-        else return ResponseEntity.ok().body(user_businessResult);
+        if (userBusinessResult == null) return ResponseEntity.noContent().build();
+        else return ResponseEntity.ok().body(userBusinessResult);
     }
 }
