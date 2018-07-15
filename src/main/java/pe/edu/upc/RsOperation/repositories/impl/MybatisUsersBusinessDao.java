@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.RsOperation.mappers.UsersBusinessMapper;
 import pe.edu.upc.RsOperation.models.UsersBusiness;
-import pe.edu.upc.RsOperation.repositories.Users_BusinessDao;
+import pe.edu.upc.RsOperation.repositories.UsersBusinessDao;
 
 import java.util.List;
 @Repository
-public class MybatisUsers_BusinessDao implements Users_BusinessDao {
+public class MybatisUsersBusinessDao implements UsersBusinessDao {
     @Autowired
     UsersBusinessMapper users_businessMapper;
 

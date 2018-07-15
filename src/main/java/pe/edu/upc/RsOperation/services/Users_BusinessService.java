@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.RsOperation.models.UsersBusiness;
-import pe.edu.upc.RsOperation.repositories.Users_BusinessDao;
+import pe.edu.upc.RsOperation.repositories.UsersBusinessDao;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class Users_BusinessService {
 
 
     @Autowired
-    Users_BusinessDao users_businessDao;
+    UsersBusinessDao users_businessDao;
 
     public List<UsersBusiness> listUsers_Business() throws Exception {
         LOGGER.debug("listUsers_Business, UsersBusiness: {}", "");

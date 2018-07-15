@@ -16,7 +16,7 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 @RestController
 @RequestMapping(value = "/users_business")
-public class Users_BusinessController {
+public class UsersBusinessController {
     private static final Logger LOGGER = LogManager.getLogger(Operation.class);
     @Autowired
     Users_BusinessService user_businessService;
